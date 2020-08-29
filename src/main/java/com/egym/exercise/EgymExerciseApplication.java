@@ -50,5 +50,4 @@ public class EgymExerciseApplication {
     public OpenAPI openAPI() {
 		return new OpenAPI().components(new Components()).info(new Info().version("1.0.0").title("eGym Coding Task API"));
     }
-
 }

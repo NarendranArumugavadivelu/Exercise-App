@@ -8,7 +8,6 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.stream.Collectors;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.egym.exercise.dto.ExerciseDTO;
@@ -20,8 +19,11 @@ import com.egym.exercise.vo.Ranking;
 @Service
 public class RankingServiceImpl implements RankingService {
 	
-	@Autowired
 	private ExerciseRepository exerciseRepository;
+	
+	public RankingServiceImpl(ExerciseRepository exerciseRepository) {
+		this.exerciseRepository = exerciseRepository;
+	}
 	
 	@Override
 	/**Method to rank the list of users based on the points gained in last 28 days
@@ -75,5 +77,4 @@ public class RankingServiceImpl implements RankingService {
 		}
 		return totalPoints;
 	}
-
 }

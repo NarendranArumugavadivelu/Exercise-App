@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Properties;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.egym.exercise.common.Constants;
@@ -20,11 +19,14 @@ import com.egym.exercise.vo.Error;
 @Service
 public class ExerciseValidationServiceImpl implements ExerciseValidationService {
 	
-	@Autowired
 	private ExerciseRepository exerciseRepository;
 	
-	@Autowired
 	private Properties errorProperties;
+	
+	public ExerciseValidationServiceImpl(ExerciseRepository exerciseRepository, Properties errorProperties) {
+		this.exerciseRepository = exerciseRepository;
+		this.errorProperties = errorProperties;
+	}
 
 	@Override
 	public void validateExerciseForUser(int userId, LocalDateTime startDateTime, int exerciseId) throws ExerciseServiceException {

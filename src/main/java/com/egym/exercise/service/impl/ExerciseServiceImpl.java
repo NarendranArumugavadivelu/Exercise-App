@@ -4,7 +4,6 @@ import java.text.MessageFormat;
 import java.time.LocalDateTime;
 import java.util.Properties;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.egym.exercise.common.Constants;
@@ -21,14 +20,17 @@ import com.egym.exercise.vo.Exercise;
 @Service
 public class ExerciseServiceImpl implements ExerciseService {
 	
-	@Autowired
 	private ExerciseValidationService exerciseValidationService;
 	
-	@Autowired
 	private Properties errorProperties;
 	
-	@Autowired
 	private ExerciseRepository exerciseRepository;
+	
+	public ExerciseServiceImpl(ExerciseValidationService exerciseValidationService, ExerciseRepository exerciseRepository, Properties errorProperties) {
+		this.exerciseValidationService = exerciseValidationService;
+		this.exerciseRepository = exerciseRepository;
+		this.errorProperties = errorProperties;
+	}
 
 	@Override
 	public Exercise saveExercise(Exercise exerciseVO) throws ExerciseServiceException {

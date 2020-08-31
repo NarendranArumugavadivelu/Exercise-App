@@ -13,6 +13,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 
+import com.egym.exercise.util.ExerciseUtils;
+
 import io.swagger.v3.oas.models.Components;
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Info;
@@ -46,11 +48,7 @@ public class EgymExerciseApplication extends SpringBootServletInitializer {
 	
 	@Bean(name = "errorProperties")
 	public Properties getErrorProperties() throws IOException {
-		Properties properties = new Properties();
-		try(InputStream inputStream = EgymExerciseApplication.class.getClassLoader().getResourceAsStream("error-messages.properties")) {
-			properties.load(inputStream);
-		}
-		return properties;
+		return ExerciseUtils.loadProperties("error-messages.properties");
 	}
 	
 	@Bean
